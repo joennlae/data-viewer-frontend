@@ -5,6 +5,8 @@ import { CartesianGrid, Legend, Line, LineChart, ReferenceLine, ResponsiveContai
 import chroma from 'chroma-js';
 import DataTable from 'react-data-table-component';
 
+const BASE_URL = "http://jsdev.vsos.ethz.ch:4419" // "http://localhost:3000"
+
 export interface LayerOptions {
   layer_name: string,
   layer_name_canonical: string
@@ -180,7 +182,7 @@ export const CustomSelect = (props: CustomSelectProps) => {
   )
 }
 
-const BASE_URL = "http://localhost:3000"
+
 
 enum SelectionType {
   LAYERS = 0,
@@ -371,8 +373,20 @@ export const CombinedSelector = () => {
       width: "60px"
     },
     {
-      name: "Encoding",
+      name: "Enc",
       selector: (row: InputData) => row.encoding_algorithm,
+      sortable: true,
+      width: "70px"
+    },
+    {
+      name: "D",
+      selector: (row: InputData) => row.learned_d + " (" + row.learned_d / row.C + ")",
+      sortable: true,
+      width: "100px"
+    },
+    {
+      name: "M",
+      selector: (row: InputData) => row.learned_m,
       sortable: true,
       width: "80px"
     },
@@ -385,6 +399,12 @@ export const CombinedSelector = () => {
       name: "L_size [bytes]",
       selector: (row: InputData) => row.L_size + " (" + Math.floor(row.L_size / 1024) + " KB)",
       sortable: true,
+    },
+    {
+      name: "T-Images",
+      selector: (row: InputData) => row.rows,
+      sortable: true,
+      width: "100px"
     },
     {
       name: "Scaled error",

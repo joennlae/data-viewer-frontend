@@ -37,6 +37,7 @@
       "react-app/jest"
     ]
   },
+  "homepage": "http://jsdev.vsos.ethz.ch/halut",
   "browserslist": {
     "production": [
       ">0.2%",
